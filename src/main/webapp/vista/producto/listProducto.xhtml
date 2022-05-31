@@ -12,59 +12,82 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        template="/WEB-INF/template.xhtml">
     <h:head>
         <title>Lista de Productos</title>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="p" value="#{productoBean.list}">
-                <f:facet name="header">
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        <h1>Lista de Productos</h1>
+            <h:form id="Productsform">.
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
+                <p:dataTable id="products" var="p" value="#{productoBean.list}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{productoBean.edit(p)}"  event="rowEdit" update=":Productsform:mensajeGeneral3"/>
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1>Lista de Productos</h1>
 
-                        <div>
-                            <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
-                            <p:columnToggler datasource="products" trigger="toggler"/>
+                            <div>
+                                <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
                         </div>
-                    </div>
-                </f:facet>
+                    </f:facet>
 
-                <p:column headerText="Id">
-                    <h:outputText value="#{p.id}" />
-                </p:column>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{p.id}" />
+                    </p:column>
 
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{p.nombreProducto}" />
-                </p:column>
+                    <p:column headerText="Nombre">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{p.nombreProducto}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{p.nombreProducto}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
 
-                <p:column headerText="Stock">
-                    <h:outputText value="#{p.stock}" />
-                </p:column>
+                    <p:column headerText="Stock">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{p.stock}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{p.stock}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
 
-                <p:column headerText="Precio">
-                    <h:outputText value="#{p.precio}" />
-                </p:column>
+                    <p:column headerText="Precio">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{p.precio}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{p.precio}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
 
-                <p:column headerText="Descripcion">
-                    <h:outputText value="#{p.descripcion}" />
-                </p:column>
-
-                <p:column headerText="Categoria">
-                    <h:outputText value="#{p.categoria.nombre}" />
-                </p:column>
-                <p:column headerText="Sucursal">
-                    <h:outputText value="#{p.sucursal.nombreClave}" />
-                </p:column>
-                <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" action="#{productoBean.delete(p)}" styleClass="ui-button-raised ui-button-danger"/>
-                </p:column>
-                <p:column headerText="Editar/Guardar">
-                    <p:commandButton value="Editar" action="#{productoBean.edit(p)}"  rendered="#{not p.editable}" />
-                    <p:commandButton value="Guardar" action="#{productoBean.edit(p)}" rendered="#{p.editable}"   />
-                </p:column>
-            </p:dataTable>
+                    <p:column headerText="Bodega">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{p.bodegas.nombre}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{p.bodegas.nombre}" />
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" action="#{productoBean.delete(p)}"  update ="products" styleClass="ui-button-raised ui-button-danger"/>
+                    </p:column>
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
         </div>
     </h:body>
-    <ui:include src="../menu/footer.xhtml" />
 </html>
 

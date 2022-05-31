@@ -75,9 +75,10 @@ public class ProductoBean implements Serializable {
         return null;
     }
 
-    public String edit(Producto p) {
+    public void edit(Producto p) {
+        productoFacade.edit(p);
         p.setEditable(true); //habilita la caja
-        return null;
+        list=productoFacade.findAll();
     }
 
     public String save(Producto p) {
