@@ -1,0 +1,49 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:p="http://primefaces.org/ui" 
+                 >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+    <h:head>
+        <title>Menu</title>
+ 
+    </h:head>
+    
+    <h:body>
+
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar >
+                    <p:submenu label="Producto" icon="pi pi-user">
+                        <p:menuitem  value="Nuevo Producto" icon="pi pi-fw pi-plus"  url="producto/producto.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Productos" icon="pi pi-fw pi-trash"  url="producto/listProducto.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Bodega" icon="pi pi-user">
+                        <p:menuitem value="Nueva Bodega" icon="pi pi-fw pi-plus"  url="bodega/bodega.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Bodegas" icon="pi pi-fw pi-trash" url="bodega/listBodega.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+ 
+
+                    <p:menuitem value="Salir"    icon="pi pi-fw pi-power-off" />
+                    <p:divider layout="vertical"/>
+                    
+                </p:menubar>
+
+            </h:form>
+
+        </div>
+
+
+    </h:body>
+</ui:composition>
