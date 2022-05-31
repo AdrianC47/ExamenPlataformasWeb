@@ -39,6 +39,13 @@ public class Bodega implements Serializable {
         this.listaProductos = listaProductos;
     }
 
+    public Bodega(int id, String nombre, String ciudad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+    }
+
+    
     public boolean isEditable() {
         return editable;
     }

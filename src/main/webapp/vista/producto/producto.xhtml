@@ -21,7 +21,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <div class="col">
                 </div>
                 <div class="col" >
-
+                    <p:growl id="mensaje" showDetail="true"  />
                     <h:form id="formulario" style="margin:20px;border-style: solid;border-width: 2" >
                         <div class="card">
                             <h2 style="text-align: center">Datos del Producto</h2>
@@ -68,11 +68,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     <div class="col">
                                     </div>
                                     <div class="col">
-                                        <p:commandButton  style="margin-right: 20px" value="Guardar"   styleClass="ui-button-raised"  action="#{productoBean.add(param['formulario:bodega'])}" />   
+                                        <p:commandButton  style="margin-right: 20px" value="Guardar"  update=":mensaje formulario" styleClass="ui-button-raised"  actionListener="#{growlView.showInfo}" action="#{productoBean.add(param['formulario:bodega'])}" />   
 
                                     </div>
                                     <div class="col">
-                                        <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
+                                        <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger" type="reset"  update="formulario"/>  
                                     </div>
                                     <div class="col">
                                     </div>

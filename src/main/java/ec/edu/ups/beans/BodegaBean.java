@@ -43,6 +43,12 @@ public class BodegaBean implements Serializable {
         return null;
     }
 
+    public String add2() {
+        bodegaFacade.create(new Bodega(id, nombre, ciudad));
+        list = bodegaFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
+
     public String delete(Bodega p) {
         bodegaFacade.remove(p);
         list = bodegaFacade.findAll();//llamo al findall para que se me actualice la lista
